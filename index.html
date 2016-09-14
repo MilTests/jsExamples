@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Пример веб-страницы</title>
+</head>
+<body>
+<h1>Заголовок</h1>
+<p>Первый абзац.</p>
+</body>
+
+<script>
+
+
+    //task #1
+    function task1(array) {
+        if (array.length > 0 && array[0] instanceof Array) {
+
+            var vhodit = true;
+            var pervii = array.shift();
+
+            array.forEach(function (item) {
+                if (pervii.indexOf(item) == -1) {
+                    vhodit = false;
+                }
+            });
+
+            return vhodit;
+        } else return false;
+
+    }
+    //task #1
+    console.log("task1:");
+    console.log(task1([[0, 1, 2, 3, 4, 5, 6], 1, 2]));
+
+
+    //task #2
+    var task2 = function (array) {
+        //return array.reduce((a, b) => a + b);
+        // ||
+
+        return (array.reduce(function (a, b) {
+            return a + b;
+        }));
+
+    };
+    //task #2
+    console.log("task2:");
+    console.log(task2([0, 1, 2, 3, 4, 5, 6]));
+
+
+    //task #3
+    var task3 = function (array) {
+        var uniq = [];
+
+        array.forEach(function (item) {
+            if (uniq.indexOf(item) == -1) {
+                uniq.push(item);
+            }
+        });
+
+        return uniq;
+
+        /*var i = array.length;
+         var j = 0;
+
+         while(i--) {
+         console.log(i);
+         for (j = 0; j<i; j++) {
+         if (array[i] == array[j]) {
+         array.splice(i, 1);
+         }
+         }
+         }*/
+        //return array;
+    };
+    //task #3
+    console.log("task3:");
+    console.log(task3([0, 6, 1, 2, 3, 4, 4, 6, 6, 5, 5, 6]));
+
+
+    //task #4
+    var task4 = function (arr, key) {
+        var listOfArr = [];
+
+        Object.keys(arr).forEach(function (arrkey) {
+            if (arr[arrkey] instanceof Object) {
+                listOfArr = listOfArr.concat(task4(arr[arrkey], key));
+            } else {
+                if (arrkey == key) {
+                    listOfArr.push(arr[arrkey]);
+                }
+            }
+        });
+
+        return listOfArr;
+
+        //return list; //> ['name_1', 'name_1.1', 'name_1.1.1', 'name_2']
+    };
+
+    //task #4
+    var arr = [
+        {
+            name: 'name_1',
+            items: [
+                {
+                    name: 'name_1.1',
+                    items: [
+                        {
+                            name: 'name_1.1.1'
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            name: 'name_2'
+        }
+    ];
+    console.log("task4:");
+    console.log(task4(arr, 'name'));
+
+</script>
+
+</html>
+
